@@ -1,0 +1,67 @@
+<div class="json-tree-editor">
+    <!-- Add this save button -->
+    <div class="save-section">
+        <button class="save-btn" (click)="saveChanges()">Save</button>
+    </div>
+
+    <div class="tree-node" *ngFor="let node of treeNodes; trackBy: trackByKey">
+        <ng-container [ngTemplateOutlet]="nodeTemplate" [ngTemplateOutletContext]="{node: node, level: 0}"></ng-container>
+    </div>
+</div>
+
+<ng-template #nodeTemplate let-node="node" let-level="level">
+    <div class="node-container" [style.margin-left.px]="level * 20">
+    
+        <!-- Object/Array Node -->
+        <div *ngIf="node.type === 'object' || node.type === 'array'" class="object-node">
+            <div class="node-header">
+                <button class="expand-btn" (click)="toggleExpand(node)">
+                    {{ node.expanded ? '▼' : '▶' }}
+                </button>
+                <input *ngIf="node.key !== 'root'" [(ngModel)]="node.key" (blur)="updateJsonFromChange()" placeholder="key">
+                <span class="type-indicator">{{ node.type === 'array' ? '[]' : '{}' }}</span>
+                <button class="add-btn" (click)="addChild(node)">+</button>
+                <button *ngIf="node.key !== 'root'" class="remove-btn" (click)="removeNode(node)">×</button>
+            </div>
+            
+            <div *ngIf="node.expanded" class="children">
+                <div *ngFor="let child of node.children; trackBy: trackByKey">
+                    <ng-container [ngTemplateOutlet]="nodeTemplate" [ngTemplateOutletContext]="{node: child, level: level + 1}"></ng-container>
+                </div>
+            </div>
+        </div>
+
+        <!-- Primitive Node -->
+        <div *ngIf="node.type !== 'object' && node.type !== 'array'" class="primitive-node">
+            <input [(ngModel)]="node.key" class="key-input" (blur)="updateJsonFromChange()"placeholder="key">
+            <span class="separator">:</span>
+            
+            <!-- String input -->
+            <input *ngIf="node.type === 'string'" [(ngModel)]="node.value" class="value-input string-input" (blur)="updateJsonFromChange()" placeholder="value">
+            
+            <!-- Number input -->
+            <input *ngIf="node.type === 'number'" [(ngModel)]="node.value" type="number" class="value-input number-input" (blur)="updateJsonFromChange()" (keydown)="onNumberKeyDown($event)" placeholder="0">
+            
+            <!-- Boolean select -->
+            <select *ngIf="node.type === 'boolean'" [(ngModel)]="node.value" class="value-input boolean-input" (change)="updateJsonFromChange()">
+                <option [value]="true">true</option>
+                <option [value]="false">false</option>
+            </select>
+            
+            <!-- Null display -->
+            <span *ngIf="node.type === 'null'" class="null-value">null</span>
+            
+            <!-- Type selector -->
+            <select [(ngModel)]="node.type" (change)="changeType(node)" class="type-select">
+                <option value="string">String</option>
+                <option value="number">Number</option>
+                <option value="boolean">Boolean</option>
+                <option value="object">Object</option>
+                <option value="array">Array</option>
+                <option value="null">Null</option>
+            </select>
+            
+            <button class="remove-btn" (click)="removeNode(node)">×</button>
+        </div>
+    </div>
+</ng-template>
