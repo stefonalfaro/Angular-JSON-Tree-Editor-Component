@@ -1,0 +1,140 @@
+.json-tree-editor {
+    font-family: 'Courier New', monospace;
+    font-size: 14px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 16px;
+    background: #f9f9f9;
+    max-height: 500px;
+    overflow-y: auto;
+}
+
+.node-container {
+    margin: 4px 0;
+}
+
+.node-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 4px;
+}
+
+.object-node {
+    border-left: 2px solid #007acc;
+    padding-left: 8px;
+}
+
+.primitive-node {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 4px 0;
+}
+
+.expand-btn {
+    background: none;
+    border: none;
+    font-size: 12px;
+    cursor: pointer;
+    width: 16px;
+    text-align: center;
+}
+
+.key-input {
+    padding: 4px 8px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    font-family: inherit;
+    min-width: 80px;
+}
+
+.value-input {
+    padding: 4px 8px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    font-family: inherit;
+    min-width: 100px;
+}
+
+.string-input {
+    color: #d14;
+}
+
+.number-input {
+    color: #098658;
+}
+
+.boolean-input {
+    color: #0969da;
+}
+
+.type-select {
+    padding: 2px 4px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    font-size: 12px;
+}
+
+.type-indicator {
+    color: #666;
+    font-weight: bold;
+}
+
+.separator {
+    color: #666;
+}
+
+.null-value {
+    color: #999;
+    font-style: italic;
+}
+
+.add-btn, .remove-btn {
+    background: #007acc;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.remove-btn {
+    background: #dc3545;
+}
+
+.add-btn:hover {
+    background: #005a9e;
+}
+
+.remove-btn:hover {
+    background: #c82333;
+}
+
+.children {
+    margin-top: 8px;
+}
+
+.save-section {
+  margin-top: 16px;
+  text-align: right;
+}
+
+.save-btn {
+  background: #28a745;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.save-btn:hover {
+  background: #218838;
+}
