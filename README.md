@@ -1,5 +1,6 @@
 # Angular-JSON-Tree-Editor-Component
 This does not exist and the packages on NPM are have bugs, don't work, have no documentation, or only for React. Therefore I decided to make my own component that actually works.
+
 <img width="571" height="375" alt="image" src="https://github.com/user-attachments/assets/84de4a98-8724-4130-80ab-7bcc1061da83" />
 
 
@@ -13,6 +14,9 @@ jsonDataChange(data:any){
   console.debug(`Data Changed:`, JSON.stringify(data, null, 2));
 }
 ```
+
+<img width="214" height="138" alt="image" src="https://github.com/user-attachments/assets/315065ae-e91a-4320-a24f-bfa049e1fef7" />
+
 
 ### Automatic Changes to Save
 This is disabled by default but you can just set this to true, then anytime you make a change it will output. Normally you need to click the Save button.
